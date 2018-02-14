@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RecAppease.iml" filepath="$PROJECT_DIR$/RecAppease.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rec-appease.iml" filepath="$PROJECT_DIR$/rec-appease.iml" />
     </modules>
   </component>
 </project>
