@@ -25,10 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GroceryListActivity" />
-        <activity android:name=".StockedIngredientsActivity" />
-        <activity android:name=".MealPlanActivity" />
-        <activity android:name=".RecipesActivity"/>
+        <activity android:name=".Grocery.GroceryFragment" />
+        <activity android:name=".Inventory.InventoryFragment" />
+        <activity android:name=".MealPlan.MealPlanFragment" />
+        <activity android:name=".Recipes.RecipesFragment"/>
     </application>
 
 </manifest>
