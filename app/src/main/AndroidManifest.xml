@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,16 +20,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Grocery.GroceryFragment" />
-        <activity android:name=".Inventory.InventoryFragment" />
-        <activity android:name=".MealPlan.MealPlanFragment" />
-        <activity android:name=".Recipes.RecipesFragment"/>
     </application>
 
 </manifest>
