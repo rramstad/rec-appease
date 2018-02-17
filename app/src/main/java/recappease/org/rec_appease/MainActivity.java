@@ -1,47 +1,73 @@
 package recappease.org.rec_appease;
 
-import android.graphics.Color;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+
+import recappease.org.rec_appease.Grocery.GroceryFragment;
+import recappease.org.rec_appease.Inventory.InventoryFragment;
+import recappease.org.rec_appease.MealPlan.MealPlanFragment;
+import recappease.org.rec_appease.Recipes.RecipesFragment;
+import recappease.org.rec_appease.Today.TodayFragment;
+import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
+import recappease.org.rec_appease.R;
+import recappease.org.rec_appease.Util.SectionsPagerAdapter;
+
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final int ACTIVITY_NUM = 0;
+    private MenuItem prevMenuItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final BottomNavigationView bottomNavigationView = (BottomNavigationView)  findViewById(R.id.bottom_navigation);
+        //BottomNavigationViewHelper.enableNavigation(this, bottomNavigationView);
+        setupViewPager();
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
+                }
+                else
+                {
+                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        BottomNavigationViewHelper.enableNavigationWithPager(bottomNavigationView, viewPager);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+        menuItem.setChecked(true);
     }
 
-    BottomNavigationView bottomNavigationView = (BottomNavigationView)
-            findViewById(R.id.bottom_navigation);
-
-    BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            //TextView textview = (TextView) findViewById(R.id.textView);
-            switch (item.getItemId()) {
-                case R.id.action_today:
-                    //textview.setText("Today");
-                    break;
-                case R.id.action_grocery:
-                    //textview.setText("Grocery");
-                    break;
-                case R.id.action_inventory:
-                    //textview.setText("Inventory");
-                    break;
-                case R.id.action_mealplan:
-                    //textview.setText("Meal Plan");
-                    break;
-                case R.id.action_recipes:
-                    //textview.setText("Recipes");
-                    break;
-            }
-            return true;
-        }
-    };
+    private void setupViewPager() {
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new TodayFragment());
+        adapter.addFragment(new GroceryFragment());
+        adapter.addFragment(new InventoryFragment());
+        adapter.addFragment(new MealPlanFragment());
+        adapter.addFragment(new RecipesFragment());
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setAdapter(adapter);
+    }
 
 }
