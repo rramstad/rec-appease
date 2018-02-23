@@ -3,21 +3,21 @@ package recappease.org.rec_appease.Login;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,9 +29,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.mobile.auth.facebook.FacebookButton;
+import com.amazonaws.mobile.auth.ui.AuthUIConfiguration;
+import com.amazonaws.mobile.auth.ui.SignInUI;
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobile.client.AWSStartupHandler;
+import com.amazonaws.mobile.client.AWSStartupResult;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import recappease.org.rec_appease.MainActivity;
 import recappease.org.rec_appease.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -39,7 +53,13 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
+
+    //Context context = this.getApplicationContext();
+
+    ClientConfiguration clientConfiguration = new ClientConfiguration();
+    // Create a CognitoUserPool object to refer to your user pool
+    CognitoUserPool userPool = new CognitoUserPool(this, " us-east-2_vunJZOb2v", "7d7476oeo5af22gqe8phoko0u1", "1mkcuecti7vtobf4src2kl50trefg4fflmqghb4lbtncks24la49", clientConfiguration);
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -68,6 +88,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        AWSMobileClient.getInstance().initialize(this, new AWSStartupHandler() {
+            @Override
+            public void onComplete(AWSStartupResult awsStartupResult) {
+                AuthUIConfiguration config =
+                        new AuthUIConfiguration.Builder()
+                                .userPools(true)  // true? show the Email and Password UI
+                                .signInButton(FacebookButton.class) // Show Facebook button
+                                //.signInButton(GoogleButton.class) // Show Google button
+                                .logoResId(R.drawable.ic_arrow_down) // Change the logo
+                                .backgroundColor(Color.BLUE) // Change the backgroundColor
+                                .isBackgroundColorFullScreen(true) // Full screen backgroundColor the backgroundColor full screenff
+                                .fontFamily("sans-serif-light") // Apply sans-serif-light as the global font
+                                .canCancel(true)
+                                .build();
+                SignInUI signin = (SignInUI) AWSMobileClient.getInstance().getClient(LoginActivity.this, SignInUI.class);
+                signin.login(LoginActivity.this, MainActivity.class).execute();
+            }
+        }).execute();
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -77,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptAuth();
                     return true;
                 }
                 return false;
@@ -88,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptAuth();
             }
         });
 
@@ -113,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
             Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
+                    .setAction(android.R.string.ok, new OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
                         public void onClick(View v) {
@@ -145,7 +185,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptAuth() {
         if (mAuthTask != null) {
             return;
         }
@@ -186,10 +226,38 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            //showProgress(true);
+            //mAuthTask = new UserLoginTask(email, password);
+            //mAuthTask.execute((Void) null);
+
+            CognitoUserAttributes userAttributes = new CognitoUserAttributes();
+            userAttributes.addAttribute("email", email);
+            userPool.signUpInBackground(email, password, userAttributes, null, signupCallBack);
         }
+    }
+
+    SignUpHandler signupCallBack = new SignUpHandler() {
+        @Override
+        public void onSuccess(CognitoUser user, boolean signUpConfirmationState, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
+            if (!signUpConfirmationState){
+                launchMainActivity();
+            }
+            else{
+                View focusView = mEmailView;
+                focusView.requestFocus();
+            }
+        }
+
+        @Override
+        public void onFailure(Exception exception) {
+            View focusView = mEmailView;
+            focusView.requestFocus();
+        }
+    };
+
+    private void launchMainActivity(){
+        Intent intentToday = new Intent(this, MainActivity.class);
+        startActivity(intentToday);
     }
 
     private boolean isEmailValid(String email) {
