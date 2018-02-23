@@ -24,15 +24,16 @@
     <string name="Recipes">Recipes</string>
 
     <string-array name="units">
-        <item>ounces</item>
-        <item>grams</item>
+        <item>-none-</item>
+        <item>tsp</item>
+        <item>tbs</item>
+        <item>fl oz</item>
         <item>cups</item>
-        <item>teaspoons</item>
-        <item>tablespoons</item>
-        <item>pounds</item>
         <item>liters</item>
         <item>gallons</item>
-
+        <item>lbs</item>
+        <item>ounce</item>
+        <item>grams</item>
     </string-array>
 
 </resources>
