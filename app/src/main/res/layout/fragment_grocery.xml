@@ -5,20 +5,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="recappease.org.rec_appease.Grocery.GroceryFragment">
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="51dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/Grocery"
-        android:textSize="36sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/grocery_list"
+        android:layout_marginBottom="150dp"
+        android:layout_marginTop="50dp" />
 
+    <EditText
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/del_button"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:ems="10"
+        android:hint="Add Item" />
+
+    <EditText
+        android:id="@+id/item_qty"
+        android:layout_width="wrap_content"
+        android:inputType="number"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_button"
+        android:layout_toLeftOf="@+id/add_button"
+        android:layout_toStartOf="@+id/add_button"
+        android:ems="10"
+        android:hint="Add Quantity" />
+
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/item_name"
+        android:layout_alignBottom="@+id/item_name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@+id/item_name"
+        android:layout_toRightOf="@+id/item_name"
+        android:src="@android:drawable/ic_input_add"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/del_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/add_button"
+        android:layout_marginBottom="49dp"
+        android:src="@android:drawable/ic_input_add"
+        android:text="Delete" />
 </RelativeLayout>
+
+
+

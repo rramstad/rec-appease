@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="53dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="0dp"
             app:itemBackground="@color/colorPrimary"
             app:itemIconTint="@android:color/white"
             app:itemTextColor="@android:color/white"
