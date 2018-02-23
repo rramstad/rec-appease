@@ -15,6 +15,7 @@ import recappease.org.rec_appease.Today.TodayFragment;
 import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
 import recappease.org.rec_appease.R;
 import recappease.org.rec_appease.Util.SectionsPagerAdapter;
+import com.facebook.FacebookSdk;
 
 
 public class MainActivity extends AppCompatActivity {

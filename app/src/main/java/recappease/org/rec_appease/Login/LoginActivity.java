@@ -3,6 +3,8 @@ package recappease.org.rec_appease.Login;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -30,17 +32,36 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import recappease.org.rec_appease.MainActivity;
 import recappease.org.rec_appease.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
+
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
+    private TextView info;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+    private final String EMAIL = "email";
+
+    Intent intent = new Intent(this, MainActivity.class);
+//    Context context = this.getApplicationContext();
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -53,6 +74,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
+
+
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -67,10 +91,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -94,6 +121,52 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions(Arrays.asList(EMAIL));
+        info = (TextView) findViewById(R.id.textView2);
+        callbackManager = CallbackManager.Factory.create();
+
+        final boolean[] isMainLobbyStarted = {false};
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+//                Intent start = new Intent(context, MainActivity.class);
+//                start.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                context.startActivity(start);
+//                Intent intentToday = new Intent(context, MainActivity.class);
+//                context.startActivity(intentToday);
+            }
+
+            @Override
+            public void onCancel() {
+                View focusView = mEmailView;
+                focusView.requestFocus();
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                View focusView = mEmailView;
+                focusView.requestFocus();
+            }
+
+//            @Override
+//            public void onFailure(Exception exception) {
+
+
+        });
+
+        boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void populateAutoComplete() {

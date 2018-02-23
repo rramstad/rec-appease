@@ -23,6 +23,9 @@
     <string name="MealPlan">Meal Plan</string>
     <string name="Recipes">Recipes</string>
 
+    <string name="facebook_app_id">164118060907500</string>
+    <string name="fb_login_protocol_scheme">fb164118060907500</string>
+
     <string-array name="units">
         <item>ounces</item>
         <item>grams</item>
