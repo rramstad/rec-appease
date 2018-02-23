@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
 import recappease.org.rec_appease.R;
+import recappease.org.rec_appease.Util.FileParser;
 
 public class GroceryFragment extends Fragment {
     public static final int ACTIVITY_NUM = 1;
@@ -28,6 +29,10 @@ public class GroceryFragment extends Fragment {
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
         */
+
+        FileParser fileParser = new FileParser(this.getContext());
+
+
         return view;
     }
 }
