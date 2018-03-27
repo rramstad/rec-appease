@@ -4,96 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="recappease.org.rec_appease.Grocery.GroceryFragment">
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/Grocery"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center_vertical"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+
+        <EditText
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Add Item"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/item_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Add Quantity"
+            android:inputType="number"
+            android:textSize="12sp" />
+
+        <Spinner
+            android:id="@+id/item_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingTop="30dp">
+
+        <Button
+            android:id="@+id/add_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_plus"
+            android:src="@android:drawable/ic_input_add" />
+
+        <Button
+            android:id="@+id/del_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_delete"
+            android:src="@android:drawable/ic_delete" />
+
+        <Button
+            android:id="@+id/checkout_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="1"
+            android:text="Checkout Items"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/grocery_list"
-        android:layout_marginBottom="150dp"
-        android:layout_marginTop="50dp" />
-
-    <EditText
-        android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/del_button"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:ems="10"
-        android:hint="Add Item" />
-
-    <EditText
-        android:id="@+id/item_qty"
-        android:layout_width="wrap_content"
-        android:inputType="number"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_button"
-        android:layout_toLeftOf="@+id/add_button"
-        android:layout_toStartOf="@+id/add_button"
-        android:ems="10"
-        android:hint="Add Quantity" />
-
-    <Button
-        android:id="@+id/add_button"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/item_name"
-        android:layout_alignBottom="@+id/item_name"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_toEndOf="@+id/item_name"
-        android:layout_toRightOf="@+id/item_name"
-        android:background="@drawable/ic_plus"
-        android:src="@android:drawable/ic_input_add"
-        android:text="+" />
-
-    <Button
-        android:id="@+id/del_button"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignLeft="@+id/add_button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/add_button"
-        android:layout_marginBottom="49dp"
-        android:background="@drawable/ic_delete"
-        android:elevation="24dp"
-        android:src="@android:drawable/ic_input_add" />
-
-    <Button
-        android:id="@+id/edit_button"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/add_button"
-        android:layout_alignBottom="@+id/add_button"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_toEndOf="@+id/add_button"
-        android:layout_toRightOf="@+id/add_button"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/ic_edit" />
-
-    <Button
-        android:id="@+id/checkout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edit_button"
-        android:layout_below="@+id/edit_button"
-        android:text="Checkout Items" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout2"
+        android:paddingBottom="50dp" />
 </RelativeLayout>
