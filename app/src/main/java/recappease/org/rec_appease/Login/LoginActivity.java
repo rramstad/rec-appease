@@ -241,7 +241,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         @Override
         public void onSuccess(CognitoUser user, boolean signUpConfirmationState, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
             if (!signUpConfirmationState){
-                launchMainActivity();
+                launchMainActivity(user);
             }
             else{
                 View focusView = mEmailView;
@@ -256,9 +256,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         }
     };
 
-    private void launchMainActivity(){
-        //Intent intentToday = new Intent(this, MainActivity.class);
-        //startActivity(intentToday);
+    private void launchMainActivity(CognitoUser user){
+        Intent intentToday = new Intent(this, MainActivity.class);
+        Bundle bundle = new Bundle();
+        //bundle.putString("username", user.getDetails());
+        startActivity(intentToday);
         //Log.d("hey", "check");
     }
 
