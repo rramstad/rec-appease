@@ -6,8 +6,12 @@ package recappease.org.rec_appease.Util;
 
 public class FoodItem {
     public String name;
+    public int quantity;
+    public String unit;
 
-    public FoodItem(String name) {
+    public FoodItem(String name, int quantity, String unit) {
         this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
     }
 }
