@@ -19,6 +19,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -256,8 +257,9 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     };
 
     private void launchMainActivity(){
-        Intent intentToday = new Intent(this, MainActivity.class);
-        startActivity(intentToday);
+        //Intent intentToday = new Intent(this, MainActivity.class);
+        //startActivity(intentToday);
+        //Log.d("hey", "check");
     }
 
     private boolean isEmailValid(String email) {
