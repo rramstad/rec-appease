@@ -12,6 +12,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import recappease.org.rec_appease.Grocery.GroceryFragment;
+import recappease.org.rec_appease.Inventory.InventoryFragment;
+
 /**
  * Created by Ramstadr6 on 2/18/2018.
  */
@@ -112,18 +115,17 @@ public class FileParser {
         }
     }
 
-    public void checkOutGrocery() {
-        ArrayList<FoodItem> groceryList = readGroceryFile();
+    public void checkOutGrocery(ArrayList<FoodItem> groceryList, int position) {
         ArrayList<FoodItem> inventoryList = readInventoryFile();
-        Iterator<FoodItem> iterator = groceryList.iterator();
-        String message = "";
-        while (iterator.hasNext()) {
-            FoodItem next = iterator.next();
-            inventoryList.add(next);
-        }
-        groceryList.clear();
+
+        FoodItem checkout = groceryList.remove(position);
+        inventoryList.add(checkout);
+
         writeInventoryFile(inventoryList);
         writeGroceryFile(groceryList);
+
+        GroceryFragment.updateList();
+        InventoryFragment.updateList();
     }
 
     public String getGroceryFileName() {
