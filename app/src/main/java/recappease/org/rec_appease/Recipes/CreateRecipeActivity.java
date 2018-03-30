@@ -25,6 +25,7 @@ import java.util.List;
 
 import recappease.org.rec_appease.MainActivity;
 import recappease.org.rec_appease.R;
+import recappease.org.rec_appease.Util.FileParser;
 import recappease.org.rec_appease.Util.FoodItem;
 import recappease.org.rec_appease.Util.FoodListAdapter;
 
@@ -129,7 +130,13 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
                 int cost = Integer.parseInt(cost_text.getText().toString());
                 boolean privacy = privacy_radio.isChecked();
                 String instructions = instruction_text.getText().toString();
-                recipe = new Recipe(titlestring, image, ingredients, null, privacy, time, serving, cost, instructions);
+                recipe = new Recipe(titlestring, image, ingredients, null, privacy, time, serving, cost, instructions, 0);
+                FileParser fileParser = new FileParser(getApplicationContext());
+                //RecipesFragment.recipeList.add(recipe);
+                ArrayList<Recipe> recipeList = fileParser.readRecipeFile();
+                recipeList.add(recipe);
+                fileParser.writeRecipeFile(RecipesFragment.recipeList);
+                MainActivity.createRecipe(recipe);
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);

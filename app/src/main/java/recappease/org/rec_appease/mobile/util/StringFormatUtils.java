@@ -1,4 +1,4 @@
-package com.amazonaws.mobile.util;
+package recappease.org.rec_appease.mobile.util;
 
 public final class StringFormatUtils {
 

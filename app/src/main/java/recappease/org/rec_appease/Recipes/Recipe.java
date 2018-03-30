@@ -12,16 +12,17 @@ import recappease.org.rec_appease.Util.FoodItem;
  */
 
 public class Recipe {
-    String title;
+    public String title;
     Matrix image;
-    ArrayList<FoodItem> ingredients;
-    ArrayList<String> tags;
-    boolean privacy;
-    int time;
-    int serving;
-    int cost;
-    String instructions;
-    public Recipe(String title, Matrix image, ArrayList<FoodItem> ingredients, ArrayList<String> tags, boolean privacy, int time, int servings, int cost, String instructions) {
+    public ArrayList<FoodItem> ingredients;
+    public ArrayList<String> tags;
+    public boolean privacy;
+    public int time;
+    public int serving;
+    public int cost;
+    public String instructions;
+    public int likes;
+    public Recipe(String title, Matrix image, ArrayList<FoodItem> ingredients, ArrayList<String> tags, boolean privacy, int time, int servings, int cost, String instructions, int likes) {
         this.title = title;
         this.image = image;
         this.ingredients = ingredients;
@@ -31,5 +32,6 @@ public class Recipe {
         this.serving = servings;
         this.cost = cost;
         this.instructions = instructions;
+        this.likes = likes;
     }
 }

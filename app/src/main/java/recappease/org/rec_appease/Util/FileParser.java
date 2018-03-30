@@ -14,6 +14,7 @@ import java.util.Iterator;
 
 import recappease.org.rec_appease.Grocery.GroceryFragment;
 import recappease.org.rec_appease.Inventory.InventoryFragment;
+import recappease.org.rec_appease.Recipes.Recipe;
 
 /**
  * Created by Ramstadr6 on 2/18/2018.
@@ -23,6 +24,7 @@ public class FileParser {
 
     private String groceryFileName = "grocery.txt";
     private String inventoryFileName = "inventory.txt";
+    private String recipeFileName = "recipe.txt";
     public Context context;
 
     public FileParser(Context context) {
@@ -126,6 +128,71 @@ public class FileParser {
 
         GroceryFragment.updateList();
         InventoryFragment.updateList();
+    }
+
+    public ArrayList<Recipe> readRecipeFile() {
+        try {
+            String message;
+            ArrayList<Recipe> recipeList = new ArrayList<>(30);
+            FileInputStream fileInputStream = this.context.openFileInput(recipeFileName);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            //StringBuffer stringBuffer = new StringBuffer();
+            ArrayList<FoodItem> ingredientList = new ArrayList<FoodItem>(30);
+            while ((message = bufferedReader.readLine()) != null) {
+                //stringBuffer.append(message + "\n");
+                String[] tokens = message.split(";;;");
+                String[] ingredienttokens = tokens[2].split(":::");
+
+                for(int i = 0; i < ingredienttokens.length; i++) {
+                    String[] foodtokens = ingredienttokens[i].split(",");
+                    if (foodtokens[i].length() == 3) {
+                        ingredientList.add(new FoodItem(foodtokens[0], Integer.parseInt(foodtokens[1]), foodtokens[2]));
+                    }
+                }
+
+                if (tokens.length == 10) {
+                    recipeList.add(new Recipe(tokens[0], null, ingredientList, null, Boolean.parseBoolean(tokens[4]), Integer.parseInt(tokens[5]), Integer.parseInt(tokens[6]), Integer.parseInt(tokens[7]), tokens[8], Integer.parseInt(tokens[9])));
+                }
+                //Log.d("Token", tokens[0] + " " + tokens[1] + " " + tokens[2]);
+            }
+            return recipeList;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<Recipe>(30);
+    }
+
+    public void writeRecipeFile(ArrayList<Recipe> recipeList) {
+        try {
+            Iterator<Recipe> iterator = recipeList.iterator();
+            String message = "";
+            while (iterator.hasNext()) {
+                Recipe next = iterator.next();
+
+                ArrayList<FoodItem> ingredients = next.ingredients;
+                Iterator<FoodItem> iterator2 = ingredients.iterator();
+                String message2 = "";
+                while (iterator2.hasNext()) {
+                    FoodItem next2 = iterator2.next();
+                    message2 = message2 + next2.name + "," + next2.quantity + "," + next2.unit + ":::";
+                }
+
+                message = message + next.title + ";;;" + "image" + ";;;" + message2 + ";;;" + "tags" + ";;;"
+                        + Boolean.toString(next.privacy) + ";;;" + Integer.toString(next.time) + ";;;"
+                        + Integer.toString(next.serving) + ";;;" + Integer.toString(next.cost) + ";;;"
+                        + next.instructions + ";;;" + Integer.toString(next.likes) + "\n";
+            }
+            FileOutputStream fileOutputStream = this.context.openFileOutput(recipeFileName, context.MODE_PRIVATE);
+            fileOutputStream.write(message.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getGroceryFileName() {

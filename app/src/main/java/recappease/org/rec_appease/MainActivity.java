@@ -22,14 +22,17 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import recappease.org.rec_appease.Grocery.GroceryFragment;
 import recappease.org.rec_appease.Inventory.InventoryFragment;
 import recappease.org.rec_appease.MealPlan.MealPlanFragment;
+import recappease.org.rec_appease.Recipes.Recipe;
 import recappease.org.rec_appease.Recipes.RecipesFragment;
 import recappease.org.rec_appease.Today.TodayFragment;
 import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
+import recappease.org.rec_appease.Util.FoodItem;
 import recappease.org.rec_appease.Util.SectionsPagerAdapter;
 import recappease.org.rec_appease.Util.SectionsPagerAdapterRecipes;
 import recappease.org.rec_appease.models.nosql.RecipesDO;
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     // Declare a DynamoDBMapper object
-    private DynamoDBMapper dynamoDBMapper;
+    private static DynamoDBMapper dynamoDBMapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,16 +93,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Instantiate a AmazonDynamoDBMapperClient
         AmazonDynamoDBClient dynamoDBClient = new AmazonDynamoDBClient(AWSMobileClient.getInstance().getCredentialsProvider());
-        this.dynamoDBMapper = DynamoDBMapper.builder()
+        dynamoDBMapper = DynamoDBMapper.builder()
                 .dynamoDBClient(dynamoDBClient)
                 .awsConfiguration(AWSMobileClient.getInstance().getConfiguration())
                 .build();
 
         /* Creating a recipe */
-        createRecipe();
+//        createRecipe();
 
         /* Reading the recipe */
-        readRecipe();
+//        readRecipe();
 
         final BottomNavigationView bottomNavigationView = (BottomNavigationView)  findViewById(R.id.bottom_navigation);
         //BottomNavigationViewHelper.enableNavigation(this, bottomNavigationView);
@@ -157,30 +160,36 @@ public class MainActivity extends AppCompatActivity {
 
 
     /* Function used to put stuff into the database */
-    private void createRecipe(){
+    public static void createRecipe(Recipe recipe){
 
-        final RecipesDO recipe = new RecipesDO();
+        final RecipesDO recipeDO = new RecipesDO();
 
         Set<String> s = new HashSet<String>();
-        s.add("chicken");
 
-        recipe.setName("Raw chicken");
-        recipe.setCreator("A Dawg");
-        recipe.setUserId(recipe.getName()+recipe.getCreator());
-        recipe.setApproxCost((double) 2000);
-        recipe.setIngredients(s);
-        recipe.setInstructions("Get the chicken");
-        recipe.setLikes((double)0);
-        recipe.setPrepTime(0.0);
-        recipe.setPublic(true);
-        recipe.setServingSize(23.0);
-        recipe.setTags(s);
+        recipeDO.setName(recipe.title);
+        recipeDO.setCreator("ME");
+        recipeDO.setUserId(recipeDO.getName()+recipeDO.getCreator());
+        recipeDO.setApproxCost((double) recipe.cost);
+        Iterator<FoodItem> iterator = recipe.ingredients.iterator();
+        String message = "";
+        while(iterator.hasNext()) {
+            FoodItem next = iterator.next();
+            message = message + next.name + "," + next.quantity + "," + next.unit + "\n";
+        }
+        s.add(message);
+        recipeDO.setIngredients(s);
+        recipeDO.setInstructions(recipe.instructions);
+        recipeDO.setLikes((double)0);
+        recipeDO.setPrepTime((double)recipe.time);
+        recipeDO.setPublic(recipe.privacy);
+        recipeDO.setServingSize((double)recipe.serving);
+        recipeDO.setTags(s);
 
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                dynamoDBMapper.save(recipe);
+                dynamoDBMapper.save(recipeDO);
                 // Item saved
             }
         }).start();
