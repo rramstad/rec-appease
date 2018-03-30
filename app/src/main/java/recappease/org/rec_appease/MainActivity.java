@@ -1,6 +1,7 @@
 package recappease.org.rec_appease;
 
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,13 +14,18 @@ import recappease.org.rec_appease.MealPlan.MealPlanFragment;
 import recappease.org.rec_appease.Recipes.RecipesFragment;
 import recappease.org.rec_appease.Today.TodayFragment;
 import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
-import recappease.org.rec_appease.R;
 import recappease.org.rec_appease.Util.SectionsPagerAdapter;
+import recappease.org.rec_appease.Util.SectionsPagerAdapterRecipes;
 
 
 public class MainActivity extends AppCompatActivity {
     public static final int ACTIVITY_NUM = 0;
     private MenuItem prevMenuItem;
+
+    private SectionsPagerAdapterRecipes mSectionsPageAdapter;
+
+    private ViewPager mViewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
         final BottomNavigationView bottomNavigationView = (BottomNavigationView)  findViewById(R.id.bottom_navigation);
         //BottomNavigationViewHelper.enableNavigation(this, bottomNavigationView);
         setupViewPager();
+
+//        mSectionsPageAdapter = new SectionsPagerAdapterRecipes(getSupportFragmentManager());
+//        mViewPager = (ViewPager) findViewById(R.id.);
+//         setupRecipesPager(mViewPager);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -69,5 +83,4 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
     }
-
 }
