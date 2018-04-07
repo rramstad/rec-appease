@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context="recappease.org.rec_appease.Recipes.RecipesFragment">
 
+    <!--
+
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,9 +24,33 @@
         android:id="@+id/pager2">
     </android.support.v4.view.ViewPager>
 
-    <Button
-        android:layout_width="wrap_content"
+    -->
+
+    <TextView
+        android:id="@+id/inventory_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="button"
-        />
+        android:layout_weight="1"
+        android:fontFamily="@font/cafe"
+        android:gravity="center"
+        android:text="@string/Recipes"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/create_recipe_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="Create New Recipe"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored" />
+
+    <ListView
+        android:id="@+id/recipes_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:scrollbars="vertical" />
+
 </LinearLayout>

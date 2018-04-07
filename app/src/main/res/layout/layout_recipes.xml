@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/main_background">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/me_textbg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:scaleType="fitXY"
+        android:id="@+id/textBG"
+        />
+
+    <ImageView
+        android:id="@+id/change_picture"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignStart="@+id/textBG"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_marginStart="25dp"
+        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
+
+    <ImageView
+        android:id="@+id/upvote"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_alignTop="@+id/change_picture"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="31dp"
+        android:layout_toEndOf="@+id/change_picture"
+        android:src="@drawable/ic_arrow_up" />
+
+    <ImageView
+        android:id="@+id/downvote"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_alignTop="@+id/upvote"
+        android:layout_toEndOf="@+id/upvote"
+        android:src="@drawable/ic_arrow_down" />
+
+    <ImageView
+        android:id="@+id/like"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_alignTop="@+id/downvote"
+        android:layout_toEndOf="@+id/downvote"
+        android:src="@drawable/ic_heart1" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/like"
+        android:layout_alignTop="@+id/textBG"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="51dp"
+        android:text="0 Likes"
+        android:textSize="30dp" />
+
+
+    <TextView
+        android:id="@+id/recipe_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/change_picture"
+        android:layout_alignTop="@+id/textBG"
+        android:text="TITLE"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/serving_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ingredients"
+        android:layout_below="@+id/ingredients"
+        android:text="Serving Size:"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/recipe_time"
+        android:layout_below="@+id/recipe_time"
+        android:text="Ingredients: "
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/recipe_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/change_picture"
+        android:layout_below="@+id/change_picture"
+        android:layout_marginTop="13dp"
+        android:text="Time Required:"
+        android:textSize="20dp" />
+
+    <ImageButton
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignStart="@+id/upvote"
+        android:layout_below="@+id/upvote"
+        android:layout_marginStart="11dp"
+        android:visibility="invisible"/>
+
+
+</RelativeLayout>
+

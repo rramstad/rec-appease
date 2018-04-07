@@ -56,6 +56,11 @@
 
         </activity>
 
+        <activity
+            android:name=".Recipes.CreateRecipeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+        </activity>
+
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>

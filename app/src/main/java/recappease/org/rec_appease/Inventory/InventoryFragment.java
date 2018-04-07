@@ -36,7 +36,6 @@ public class InventoryFragment extends Fragment {
     private EditText text_qty;
     private Spinner spn_unit;
     private ImageButton btn;
-    private Button save_btn;
     ListView list;
     private static FoodListAdapter adapter;
     private static ArrayAdapter<CharSequence> adapter2;
@@ -54,7 +53,6 @@ public class InventoryFragment extends Fragment {
         text_qty.setFilters(new InputFilter[]{new InputFilterMinMax("0", "1000")});
         spn_unit = (Spinner)view.findViewById(R.id.item_unit);
         btn = (ImageButton)view.findViewById(R.id.add_button);
-        save_btn = (Button)view.findViewById(R.id.save_button);
         list = (ListView) view.findViewById(R.id.inventory_list);
         list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         fileParser = new FileParser(this.getContext());
@@ -91,18 +89,6 @@ public class InventoryFragment extends Fragment {
 
                 Toast.makeText(getContext(), (CharSequence)"Added To Grocery List.", Toast.LENGTH_SHORT);
                 // next thing you have to do is check if your adapter has changed
-                adapter.notifyDataSetChanged();
-                adapter2.notifyDataSetChanged();
-            }
-        });
-
-        save_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fileParser.writeInventoryFile(inventoryItems);
-
-                Toast.makeText(getContext(), (CharSequence)"Inventory List Saved.", Toast.LENGTH_SHORT);
-
                 adapter.notifyDataSetChanged();
                 adapter2.notifyDataSetChanged();
             }

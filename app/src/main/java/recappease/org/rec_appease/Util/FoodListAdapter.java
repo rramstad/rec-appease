@@ -29,7 +29,7 @@ public class FoodListAdapter extends ArrayAdapter {
     private final FileParser fileParser;
 
     public enum fragmentID {
-        GROCERY, INVENTORY;
+        GROCERY, INVENTORY, CREATERECIPE;
     }
 
     public FoodListAdapter(Activity context, ArrayList<FoodItem> foodList, fragmentID fID, FileParser fileParser) {
@@ -86,6 +86,19 @@ public class FoodListAdapter extends ArrayAdapter {
                     foodList.remove(finalposition);
                     fileParser.writeInventoryFile(foodList);
                     Toast.makeText(getContext().getApplicationContext(), (CharSequence)"Item Deleted From Inventory List.", Toast.LENGTH_SHORT);
+                    notifyDataSetChanged();
+                }
+            });
+
+            checkout_btn.setVisibility(View.GONE);
+        }
+        else if (fID == fragmentID.CREATERECIPE) {
+            dlt_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    foodList.remove(finalposition);
+                    //fileParser.writeInventoryFile(foodList);
+                    Toast.makeText(getContext().getApplicationContext(), (CharSequence)"Item Deleted From Ingredients List.", Toast.LENGTH_SHORT);
                     notifyDataSetChanged();
                 }
             });

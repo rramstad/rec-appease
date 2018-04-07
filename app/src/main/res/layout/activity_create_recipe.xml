@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
 
         <EditText
             android:id="@+id/recipe_title"
@@ -23,32 +24,16 @@
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:foreground="@android:drawable/ic_menu_upload"
             app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
 
-        <LinearLayout
+        <ListView
+            android:id="@+id/ingredient_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/public_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/lane"
-                android:text="Public" />
-
-            <RadioButton
-                android:id="@+id/private_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/lane"
-                android:text="Private" />
-
-        </LinearLayout>
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,38 +41,50 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/ingredients_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                app:srcCompat="@android:drawable/ic_input_add" />
-
-            <TextView
+                android:id="@+id/add_button"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/lane"
-                android:gravity="center_vertical"
-                android:text="Add Ingredients" />
+                android:width="30dp"
+                android:maxWidth="50dp"
+                android:src="@android:drawable/ic_input_add" />
 
-            <ImageButton
-                android:id="@+id/tags_button"
+            <EditText
+                android:id="@+id/item_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                app:srcCompat="@android:drawable/ic_input_add" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:ems="10"
                 android:fontFamily="@font/lane"
-                android:gravity="center_vertical"
-                android:text="Add Tags" />
+                android:hint="Add Item"
+                android:maxHeight="30dp"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/item_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="@font/lane"
+                android:hint="Add Quantity"
+                android:inputType="number|numberDecimal"
+                android:maxLength="4"
+                android:maxLines="1"
+                android:textSize="12sp" />
+
+            <Spinner
+                android:id="@+id/item_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center" />
 
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,7 +99,8 @@
                 android:ems="10"
                 android:fontFamily="@font/lane"
                 android:hint="Cook Time (min)"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/servings_text"
@@ -112,7 +110,8 @@
                 android:ems="10"
                 android:fontFamily="@font/lane"
                 android:hint="Serving Size"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/cost_text"
@@ -122,48 +121,80 @@
                 android:ems="10"
                 android:fontFamily="@font/lane"
                 android:hint="Cost ($)"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/instruction_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:fontFamily="@font/lane"
+            android:gravity="top"
+            android:hint="Add Instructions"
+            android:inputType="textMultiLine"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbars="vertical"
+            android:selectAllOnFocus="false"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/public_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lane"
+                    android:text="Public"
+                    android:textSize="12sp" />
+
+                <RadioButton
+                    android:id="@+id/private_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lane"
+                    android:text="Private"
+                    android:textSize="12sp" />
+
+            </RadioGroup>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/instruction_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:fontFamily="@font/lane"
-                android:gravity="top"
-                android:hint="Add Instructions"
-                android:inputType="textMultiLine" />
-
-            <LinearLayout
+            <Button
+                android:id="@+id/save_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:text="Save" />
 
-                <ImageButton
-                    android:id="@+id/save_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/transparent"
-                    app:srcCompat="@drawable/ic_save" />
-
-                <ImageButton
-                    android:id="@+id/cancel_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/transparent"
-                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
-            </LinearLayout>
-
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel" />
         </LinearLayout>
 
     </LinearLayout>
