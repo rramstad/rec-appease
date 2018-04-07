@@ -30,12 +30,15 @@ public class RecipesFragment extends Fragment implements BrowseRecipes.OnFragmen
     ListView list;
     Button create_recipe;
     public static ArrayList<Recipe> recipeList;
+    public RecipeAdapter recipeAdapter;
 
     //@Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipes, container, false);
         FileParser fileParser = new FileParser(getContext());
         recipeList = fileParser.readRecipeFile();
+        recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
+
         /*
         TabLayout tabs = (TabLayout) view.findViewById(R.id.tablayout);
         tabs.addTab(tabs.newTab().setText("Browse"));
@@ -66,8 +69,8 @@ public class RecipesFragment extends Fragment implements BrowseRecipes.OnFragmen
         */
 
         list = view.findViewById(R.id.recipes_result);
+        list.setAdapter(recipeAdapter);
         create_recipe = view.findViewById(R.id.create_recipe_btn);
-
         create_recipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

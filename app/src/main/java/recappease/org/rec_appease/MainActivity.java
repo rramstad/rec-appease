@@ -203,10 +203,10 @@ public class MainActivity extends AppCompatActivity {
 
                 RecipesDO recipe = dynamoDBMapper.load(
                         RecipesDO.class,
-                        "raw chicken");
+                        "Raw chickenA Dawg");
 
                 // Item read
-                Log.d("Approx Cost:", recipe.toString());
+                Log.d("Approx Cost:", recipe.getName());
             }
         }).start();
     }
