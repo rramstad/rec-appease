@@ -16,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import recappease.org.rec_appease.Login.LoginActivity;
+import recappease.org.rec_appease.MainActivity;
 import recappease.org.rec_appease.R;
+import recappease.org.rec_appease.Recipes.Recipe;
 import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
 
 import android.support.design.widget.BottomNavigationView;
@@ -57,7 +59,7 @@ public class TodayFragment extends Fragment {
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logout();
+                today();
             }
         });
         return view;
@@ -73,6 +75,11 @@ public class TodayFragment extends Fragment {
         //startActivity(new Intent(TodayFragment.this.getActivity(), LoginActivity.class), FLAG_ACTIVITY_CLEAR_TOP);
     }
 
+    private void today() {
+
+        //Recipe recipe = MainActivity.readRecipe();
+        //signout.setText(recipe.title);
+    }
 
 
 }
