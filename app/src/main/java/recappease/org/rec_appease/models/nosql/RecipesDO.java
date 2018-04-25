@@ -18,13 +18,12 @@ public class RecipesDO {
     private String _name;
     private Double _approxCost;
     private String _creator;
-    private Set<String> _ingredients;
+    private String _ingredients;
     private String _instructions;
     private Double _likes;
     private Double _prepTime;
     private Boolean _public;
     private Double _servingSize;
-    private Set<String> _tags;
 
     @DynamoDBHashKey(attributeName = "userId")
     @DynamoDBAttribute(attributeName = "userId")
@@ -61,11 +60,11 @@ public class RecipesDO {
         this._creator = _creator;
     }
     @DynamoDBAttribute(attributeName = "ingredients")
-    public Set<String> getIngredients() {
+    public String getIngredients() {
         return _ingredients;
     }
 
-    public void setIngredients(final Set<String> _ingredients) {
+    public void setIngredients(final String _ingredients) {
         this._ingredients = _ingredients;
     }
     @DynamoDBAttribute(attributeName = "instructions")
@@ -107,14 +106,6 @@ public class RecipesDO {
 
     public void setServingSize(final Double _servingSize) {
         this._servingSize = _servingSize;
-    }
-    @DynamoDBAttribute(attributeName = "tags")
-    public Set<String> getTags() {
-        return _tags;
-    }
-
-    public void setTags(final Set<String> _tags) {
-        this._tags = _tags;
     }
 
 }
