@@ -85,69 +85,7 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
         imageToUpload.setOnClickListener(this);
 
 
-        /**final ArrayList<FoodItem> ingredients = new ArrayList<>(30);
-        final FoodListAdapter adapter = new FoodListAdapter(this, ingredients, FoodListAdapter.fragmentID.CREATERECIPE, null);
-        list.setAdapter(adapter);
-        final ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.units, android.R.layout.simple_spinner_dropdown_item);
-        food_unit.setAdapter(adapter2);*/
-        /*
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
-        */
-        /**add_ingredient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = food_name.getText().toString();
-                int quantity = Integer.parseInt(food_quantity.getText().toString());
-                String unit = food_unit.getSelectedItem().toString();
-                if (unit.equals("-none-")) {
-                    unit = "";
-                }
-                FoodItem item = new FoodItem(name, quantity, unit);
-                ingredients.add(item);
-                food_name.setText("");
-                food_quantity.setText("");
-                food_unit.setSelection(0);
-
-                //adapter.notifyDataSetChanged();
-                //adapter2.notifyDataSetChanged();
-            }
-        });*/
-
-        /**save_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String titlestring = title.getText().toString();
-//                android.graphics.Matrix image = imageButton.getImageMatrix();
-                int time = Integer.parseInt(time_text.getText().toString());
-                int serving = Integer.parseInt(servings_text.getText().toString());
-                int cost = Integer.parseInt(cost_text.getText().toString());
-                boolean privacy = privacy_radio.isChecked();
-                String instructions = instruction_text.getText().toString();
-                recipe = new Recipe(titlestring, null, ingredients, privacy, time, serving, cost, instructions, 0);
-                FileParser fileParser = new FileParser(getApplicationContext());
-                //RecipesFragment.recipeList.add(recipe);
-                ArrayList<Recipe> recipeList = fileParser.readRecipeFile();
-                recipeList.add(recipe);
-                fileParser.writeRecipeFile(RecipesFragment.recipeList);
-                MainActivity.createRecipe(recipe);
-
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        cancel_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         ingredients.setOnClickListener(new View.OnClickListener() {
             @Override
