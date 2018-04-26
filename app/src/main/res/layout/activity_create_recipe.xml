@@ -28,13 +28,6 @@
             android:foreground="@android:drawable/ic_menu_upload"
             app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
 
-        <ListView
-            android:id="@+id/ingredient_list"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +42,8 @@
                 android:width="30dp"
                 android:maxWidth="50dp"
                 android:src="@android:drawable/ic_input_add" />
+
+
 
             <EditText
                 android:id="@+id/item_name"
@@ -173,6 +168,23 @@
                     android:textSize="12sp" />
 
             </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ingredients_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/transparent"
+                android:text="Add Ingredients" />
+            <!--app:srcCompat="@android:drawable/ic_input_add" -->
+
+
         </LinearLayout>
 
         <LinearLayout

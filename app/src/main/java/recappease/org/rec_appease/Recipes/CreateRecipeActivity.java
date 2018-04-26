@@ -38,10 +38,10 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
     ListView list;
     RadioButton privacy_radio;
 
-    Button save_btn;
-    Button cancel_btn;
+    Button ingredients;
+    Button tags;
 
-    ArrayList<FoodItem> ingredients;
+    //ArrayList<FoodItem> ingredients;
     TextView title;
     ImageButton imageButton;
 
@@ -65,9 +65,10 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipe);
 
-        list = findViewById(R.id.ingredient_list);
+        ingredients = findViewById(R.id.ingredients_button);
+        //tags = findViewById(R.id.tags_button);
+
         title = findViewById(R.id.recipe_title);
-        //imageButton = findViewById(R.id.imageButton);
         add_ingredient = findViewById(R.id.add_button);
         food_name = findViewById(R.id.item_name);
         food_quantity = findViewById(R.id.item_qty);
@@ -75,11 +76,8 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
         time_text = findViewById(R.id.time_text);
         servings_text = findViewById(R.id.servings_text);
         cost_text = findViewById(R.id.cost_text);
-        instruction_text = findViewById(R.id.instruction_text);
         privacy_radio = findViewById(R.id.public_button);
 
-        save_btn = findViewById(R.id.save_button);
-        cancel_btn = findViewById(R.id.cancel_button);
 
         imageToUpload = findViewById(R.id.imageButton);
 
@@ -87,11 +85,11 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
         imageToUpload.setOnClickListener(this);
 
 
-        final ArrayList<FoodItem> ingredients = new ArrayList<>(30);
+        /**final ArrayList<FoodItem> ingredients = new ArrayList<>(30);
         final FoodListAdapter adapter = new FoodListAdapter(this, ingredients, FoodListAdapter.fragmentID.CREATERECIPE, null);
         list.setAdapter(adapter);
         final ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.units, android.R.layout.simple_spinner_dropdown_item);
-        food_unit.setAdapter(adapter2);
+        food_unit.setAdapter(adapter2);*/
         /*
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +98,7 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
             }
         });
         */
-        add_ingredient.setOnClickListener(new View.OnClickListener() {
+        /**add_ingredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = food_name.getText().toString();
@@ -115,12 +113,12 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
                 food_quantity.setText("");
                 food_unit.setSelection(0);
 
-                adapter.notifyDataSetChanged();
-                adapter2.notifyDataSetChanged();
+                //adapter.notifyDataSetChanged();
+                //adapter2.notifyDataSetChanged();
             }
-        });
+        });*/
 
-        save_btn.setOnClickListener(new View.OnClickListener() {
+        /**save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String titlestring = title.getText().toString();
@@ -149,17 +147,16 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
-        /*
-        .setOnClickListener(new View.OnClickListener() {
+        ingredients.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "ingredients", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), AddIngredients.class);
+                startActivity(i);
             }
         });
-        */
-
 
     }
 
@@ -170,7 +167,6 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
                 break;
-
         }
     }
 
