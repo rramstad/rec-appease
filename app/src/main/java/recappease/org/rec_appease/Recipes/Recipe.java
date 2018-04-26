@@ -22,7 +22,8 @@ public class Recipe {
     public int cost;
     public String instructions;
     public int likes;
-    public Recipe(String title, Matrix image, ArrayList<FoodItem> ingredients, boolean privacy, int time, int servings, int cost, String instructions, int likes) {
+    public String creator;
+    public Recipe(String title, Matrix image, ArrayList<FoodItem> ingredients, boolean privacy, int time, int servings, int cost, String instructions, int likes, String creator) {
         this.title = title;
         this.image = image;
         this.ingredients = ingredients;
@@ -32,6 +33,7 @@ public class Recipe {
         this.cost = cost;
         this.instructions = instructions;
         this.likes = likes;
+        this.creator = creator;
     }
 
     public static ArrayList<FoodItem> parseIngredients(String s) {
@@ -41,7 +43,7 @@ public class Recipe {
         for (int i = 0; i < ingredientToken.length; i++) {
             token = ingredientToken[i].split(":::");
             for (int j = 0; j < token.length; j++) {
-                //ingredients.add(new FoodItem(token[0], Integer.parseInt(token[1]), token[2]));
+                ingredients.add(new FoodItem(token[0], Integer.parseInt(token[1]), token[2]));
             }
         }
         return ingredients;
