@@ -24,7 +24,7 @@ import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
 import recappease.org.rec_appease.R;
 import recappease.org.rec_appease.Util.FileParser;
 
-public class RecipesFragment extends Fragment implements BrowseRecipes.OnFragmentInteractionListener, SavedRecipes.OnFragmentInteractionListener {
+public class RecipesFragment extends Fragment  {
     public static final int ACTIVITY_NUM = 4;
 
     ListView list;
@@ -83,8 +83,4 @@ public class RecipesFragment extends Fragment implements BrowseRecipes.OnFragmen
         return view;
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
