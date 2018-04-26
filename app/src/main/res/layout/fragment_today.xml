@@ -36,44 +36,41 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/me_textbg" />
 
-    <EditText
+    <TextView
         android:id="@+id/today_ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView2"
         android:layout_below="@+id/textView2"
-        android:hint="Ingredients"
         android:layout_marginTop="25dp"
-        android:inputType="textMultiLine"
+        android:text="Ingredients"
         android:maxLines="6"
         android:minLines="0"
         android:textSize="20dp"
         android:layout_alignParentEnd="true"/>
 
-    <EditText
+    <TextView
         android:id="@+id/today_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/today_ingredients"
         android:layout_below="@+id/today_ingredients"
         android:layout_marginTop="25dp"
-        android:hint="Instructions"
-        android:inputType="number"
+        android:text="Instruction"
         android:textSize="20dp"
         android:layout_alignParentEnd="true"/>
 
 
-    <EditText
+    <TextView
         android:id="@+id/today_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/today_instructions"
         android:layout_below="@+id/today_instructions"
         android:layout_marginTop="25dp"
-        android:hint="Description"
         android:imeActionLabel="Over and out!"
         android:imeOptions="actionDone"
-        android:inputType="textMultiLine"
+        android:text="Description"
         android:maxLines="6"
         android:minLines="0"
         android:textSize="20dp"
