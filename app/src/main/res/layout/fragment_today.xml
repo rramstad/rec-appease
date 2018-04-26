@@ -30,7 +30,7 @@
     <ImageView
         android:id="@+id/today_textBG"
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/textView2"
         android:scaleType="fitXY"
@@ -97,8 +97,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/textView2"
-        android:layout_below="@+id/today_description"
-        android:layout_marginTop="47dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
         android:clickable="true"
         android:onClick="Cancel"
         android:text="Delete" />
