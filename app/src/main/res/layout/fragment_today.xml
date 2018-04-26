@@ -37,11 +37,24 @@
         app:srcCompat="@drawable/me_textbg" />
 
     <TextView
-        android:id="@+id/today_ingredients"
+        android:id="@+id/today_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView2"
         android:layout_below="@+id/textView2"
+        android:layout_marginTop="25dp"
+        android:text="Title"
+        android:maxLines="6"
+        android:minLines="0"
+        android:textSize="20dp"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/today_ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/today_title"
+        android:layout_below="@+id/today_title"
         android:layout_marginTop="25dp"
         android:text="Ingredients"
         android:maxLines="6"
