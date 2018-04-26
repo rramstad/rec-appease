@@ -30,47 +30,11 @@
     <ImageView
         android:id="@+id/today_textBG"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/textView2"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/me_textbg" />
-
-    <ImageView
-        android:id="@+id/today_upvote"
-        android:layout_width="50dp"
-        android:layout_height="70dp"
-        android:layout_above="@+id/today_delete"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_marginBottom="28dp"
-        android:src="@drawable/ic_arrow_up" />
-
-    <ImageView
-        android:id="@+id/today_downvote"
-        android:layout_width="50dp"
-        android:layout_height="70dp"
-        android:layout_alignTop="@+id/today_upvote"
-        android:layout_toEndOf="@+id/today_upvote"
-        android:src="@drawable/ic_arrow_down" />
-
-    <ImageView
-        android:id="@+id/today_like"
-        android:layout_width="50dp"
-        android:layout_height="70dp"
-        android:layout_alignTop="@+id/today_downvote"
-        android:layout_toEndOf="@+id/today_downvote"
-        android:src="@drawable/ic_heart1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/today_cooked"
-        android:layout_alignTop="@+id/today_like"
-        android:layout_marginEnd="11dp"
-        android:layout_marginTop="13dp"
-        android:text="0 Likes"
-        android:textSize="30dp"
-        android:id="@+id/today_like_no"/>
 
     <EditText
         android:id="@+id/today_ingredients"
@@ -79,8 +43,10 @@
         android:layout_alignStart="@+id/textView2"
         android:layout_below="@+id/textView2"
         android:hint="Ingredients"
-        android:inputType="text"
-        android:textSize="25dp"
+        android:inputType="textMultiLine"
+        android:maxLines="6"
+        android:minLines="0"
+        android:textSize="20dp"
         android:layout_alignParentEnd="true"/>
 
     <EditText
@@ -92,7 +58,7 @@
         android:layout_marginTop="20dp"
         android:hint="Instructions"
         android:inputType="number"
-        android:textSize="18dp"
+        android:textSize="20dp"
         android:layout_alignParentEnd="true"/>
 
 
@@ -103,13 +69,13 @@
         android:layout_alignStart="@+id/today_instructions"
         android:layout_below="@+id/today_instructions"
         android:layout_marginTop="19dp"
-        android:hint="Enter description"
+        android:hint="Description"
         android:imeActionLabel="Over and out!"
         android:imeOptions="actionDone"
         android:inputType="textMultiLine"
-        android:maxLines="4"
+        android:maxLines="6"
         android:minLines="0"
-        android:textSize="16dp"
+        android:textSize="20dp"
         android:layout_alignParentEnd="true"/>
 
 
@@ -129,9 +95,9 @@
         android:id="@+id/today_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/today_upvote"
-        android:layout_marginBottom="74dp"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_below="@+id/today_description"
+        android:layout_marginTop="47dp"
         android:clickable="true"
         android:onClick="Cancel"
         android:text="Delete" />
