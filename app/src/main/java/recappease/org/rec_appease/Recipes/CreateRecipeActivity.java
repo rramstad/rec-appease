@@ -128,7 +128,7 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
                 int cost = Integer.parseInt(cost_text.getText().toString());
                 boolean privacy = privacy_radio.isChecked();
                 String instructions = instruction_text.getText().toString();
-                recipe = new Recipe(titlestring, null, ingredients, privacy, time, serving, cost, instructions, 0);
+                recipe = new Recipe(titlestring, null, ingredients, privacy, time, serving, cost, instructions, 0, MainActivity.userId);
                 FileParser fileParser = new FileParser(getApplicationContext());
                 //RecipesFragment.recipeList.add(recipe);
                 ArrayList<Recipe> recipeList = fileParser.readRecipeFile();
