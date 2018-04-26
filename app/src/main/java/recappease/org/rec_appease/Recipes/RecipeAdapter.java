@@ -2,6 +2,7 @@ package recappease.org.rec_appease.Recipes;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,15 +35,21 @@ public class RecipeAdapter extends ArrayAdapter {
 
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View rowView = inflater.inflate(R.layout.layout_recipes, null,true);
+        View rowView = inflater.inflate(R.layout.recipe_profile, null,true);
 
         //this code gets references to objects in the listview_row.xml file
         //TextView foodField = (TextView) rowView.findViewById(R.id.foodItemTextView);
 
         TextView titleText = (TextView)rowView.findViewById(R.id.recipe_title);
         TextView serving_size = (TextView)rowView.findViewById(R.id.serving_size);
-        TextView ingredients = (TextView)rowView.findViewById(R.id.ingredients);
+        TextView cost = (TextView)rowView.findViewById(R.id.cost);
         TextView time = (TextView)rowView.findViewById(R.id.recipe_time);
+
+        ImageButton upvote = (ImageButton)rowView.findViewById(R.id.upvote);
+        ImageButton downvote = (ImageButton)rowView.findViewById(R.id.downvote);
+        ImageButton favorite = (ImageButton)rowView.findViewById(R.id.favorite);
+        Button addToday = (Button)rowView.findViewById(R.id.addToday);
+        Button addInventory = (Button)rowView.findViewById(R.id.addIngredients);
         //this code sets the values of the objects to values from the arrays
         //foodText.setText(foodList.get(position).quantity + " " + foodList.get(position).unit + " " + foodList.get(position).name);
 
@@ -50,7 +57,48 @@ public class RecipeAdapter extends ArrayAdapter {
         Recipe rec = recipeList.get(position);
         titleText.setText(rec.title);
         serving_size.setText(rec.serving + " servings");
+        cost.setText("$" + rec.cost);
         time.setText(rec.time + " minutes");
+
+        upvote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+
+        });
+
+        downvote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+
+        });
+
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+
+        });
+
+        addToday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+
+        });
+
+        addInventory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+
+        });
 
         return rowView;
     };

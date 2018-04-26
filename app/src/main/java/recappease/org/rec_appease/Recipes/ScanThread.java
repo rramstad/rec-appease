@@ -32,7 +32,9 @@ public class ScanThread implements Runnable {
         recipesArrayList = new ArrayList<Recipe>(30);
         for(Map<String, AttributeValue> item : scanResult.getItems()) {
             String name = item.get("name").toString();
-            name = name.substring(3,name.length() - 2);
+            name = name.substring(3, name.length() - 2);
+            String creator = item.get("creator").toString();
+            creator = creator.substring(3, creator.length() - 2);
             Recipe recipe = new Recipe(name,
                     null,
                     Recipe.parseIngredients(item.get("ingredients").toString()),
@@ -41,7 +43,8 @@ public class ScanThread implements Runnable {
                     Integer.parseInt(item.get("serving_size").toString().replaceAll("[^\\d.]", "")),
                     Integer.parseInt(item.get("approx_cost").toString().replaceAll("[^\\d.]", "")),
                     item.get("instructions").toString(),
-                    Integer.parseInt(item.get("likes").toString().replaceAll("[^\\d.]", "")));
+                    Integer.parseInt(item.get("likes").toString().replaceAll("[^\\d.]", "")),
+                    creator);
 
             recipesArrayList.add(recipe);
         }

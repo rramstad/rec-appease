@@ -1,173 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/main_background">
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/me_textbg"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:scaleType="fitXY"
-        android:id="@+id/textBG"
-        />
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/change_picture"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignLeft="@+id/textBG"
-        android:layout_alignStart="@+id/textBG"
-        android:layout_alignTop="@+id/textBG"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
-
-    <ImageView
-        android:id="@+id/upvote"
-        android:layout_width="50dp"
-        android:layout_height="70dp"
-        android:layout_above="@+id/change_ingredients"
-        android:layout_toStartOf="@+id/change_confirm"
-        android:src="@drawable/ic_arrow_up" />
-
-    <ImageView
-        android:id="@+id/downvote"
-        android:layout_width="50dp"
-        android:layout_height="70dp"
-        android:layout_above="@+id/change_ingredients"
-        android:layout_toEndOf="@+id/upvote"
-        android:src="@drawable/ic_arrow_down" />
-
-    <ImageView
-        android:id="@+id/like"
-        android:layout_width="50dp"
-        android:layout_height="70dp"
-        android:layout_alignTop="@+id/downvote"
-        android:layout_toEndOf="@+id/downvote"
-        android:src="@drawable/ic_heart1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/change_confirm"
-        android:layout_below="@+id/change_picture_button"
-        android:layout_marginEnd="11dp"
-        android:text="0 Likes"
-        android:textSize="30dp" />
-
-    <Button
-        android:id="@+id/change_picture_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/change_picture"
-        android:layout_marginStart="28dp"
-        android:layout_toEndOf="@+id/change_picture"
-        android:text="Upload Picture" />
-
-    <EditText
-        android:id="@+id/change_ingredients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/textBG"
-        android:layout_alignRight="@id/textBG"
-        android:layout_below="@id/change_picture"
-        android:layout_marginTop="10dp"
-        android:hint="Ingredients"
-        android:inputType="text"
-        android:textSize="25dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:hint="Instructions"
-        android:id="@+id/change_age"
-        android:textSize="18dp"
-        android:layout_below="@id/change_ingredients"
-        android:layout_alignLeft="@id/textBG"
-        android:layout_alignRight="@id/textBG"
-        android:layout_marginTop="10dp"
-        />
-
-
-
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Enter description"
-        android:id="@+id/change_description"
-        android:textSize="16dp"
-        android:layout_below="@id/change_age"
-        android:layout_alignLeft="@id/textBG"
-        android:layout_alignRight="@id/textBG"
-        android:layout_marginTop="10dp"
-        android:imeOptions="actionDone"
-        android:imeActionLabel="Over and out!"
-        android:inputType="textMultiLine"
-        android:maxLines="4"
-        android:minLines="0"
-        />
-
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/genderGroup"
-        android:layout_alignLeft="@id/textBG"
-        android:layout_marginLeft="15dp"
-        android:layout_below="@id/change_description">
-
-
-
-        <RadioButton android:id="@+id/radio_male"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/recipe_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vegetarian"
-            android:checked="true"
+            android:fontFamily="@font/cafe"
+            android:text="TITLE"
+            android:textAlignment="center"
+            android:textSize="30dp" />
 
-            />
 
-        <RadioButton android:id="@+id/radio_female"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gluten-free"
-            />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <RadioButton android:id="@+id/radio_other"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/likes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/cafe"
+                android:text="0 Likes"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <ImageButton
+                android:id="@+id/upvote"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_arrow_up" />
+
+            <ImageButton
+                android:id="@+id/downvote"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_arrow_down" />
+
+            <ImageButton
+                android:id="@+id/favorite"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_heart1" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addToday"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Other"
-            />
+            android:text="Add Recipe to 'Today'" />
 
-    </RadioGroup>
+        <TextView
+            android:id="@+id/serving_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/cost"
+            android:layout_below="@+id/cost"
+            android:fontFamily="@font/lane"
+            android:text="Serving Size:"
+            android:textSize="20dp" />
 
-    <Button
-        android:text="Confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/change_confirm"
-        android:layout_below="@id/genderGroup"
-        android:layout_alignRight="@id/textBG"
-        android:layout_marginRight="50dp"
-        android:clickable="true"
-        android:onClick="Confirm"/>
+        <TextView
+            android:id="@+id/cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/recipe_time"
+            android:layout_below="@+id/recipe_time"
+            android:fontFamily="@font/lane"
+            android:text="Cost: "
+            android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/change_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/change_confirm"
-        android:text="Cancel"
-        android:clickable="true"
-        android:onClick="Cancel"/>
+        <TextView
+            android:id="@+id/recipe_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/change_picture"
+            android:layout_below="@+id/change_picture"
+            android:fontFamily="@font/lane"
+            android:text="Time:"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cafe"
+            android:text="Ingredients"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/addIngredients"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Ingredients To 'Grocery'" />
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cafe"
+            android:text="Instructions"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
+
 
