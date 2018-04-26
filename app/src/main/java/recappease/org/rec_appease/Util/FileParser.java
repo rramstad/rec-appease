@@ -25,6 +25,7 @@ public class FileParser {
     private String groceryFileName = "grocery.txt";
     private String inventoryFileName = "inventory.txt";
     private String recipeFileName = "recipe.txt";
+    private String ingredientsFileName = "ingredients.txt";
     public Context context;
 
     public FileParser(Context context) {
@@ -186,6 +187,49 @@ public class FileParser {
                         + next.instructions + ";;;" + Integer.toString(next.likes) + "\n";
             }
             FileOutputStream fileOutputStream = this.context.openFileOutput(recipeFileName, context.MODE_PRIVATE);
+            fileOutputStream.write(message.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<FoodItem> readIngredientsFile() {
+        try {
+            String message;
+            ArrayList<FoodItem> inventoryList = new ArrayList<>(30);
+            FileInputStream fileInputStream = this.context.openFileInput(ingredientsFileName);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            //StringBuffer stringBuffer = new StringBuffer();
+            while ((message = bufferedReader.readLine()) != null) {
+                //stringBuffer.append(message + "\n");
+                String[] tokens = message.split(",");
+                if (tokens.length == 3) {
+                    inventoryList.add(new FoodItem(tokens[0], Integer.parseInt(tokens[1]), tokens[2]));
+                }
+                //Log.d("Token", tokens[0] + " " + tokens[1] + " " + tokens[2]);
+            }
+            return inventoryList;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<FoodItem>(30);
+    }
+
+    public void writeIngredientsFile(ArrayList<FoodItem> inventoryList) {
+        try {
+            Iterator<FoodItem> iterator = inventoryList.iterator();
+            String message = "";
+            while (iterator.hasNext()) {
+                FoodItem next = iterator.next();
+                message = message + next.name + "," + next.quantity + "," + next.unit + "\n";
+            }
+            FileOutputStream fileOutputStream = this.context.openFileOutput(ingredientsFileName, context.MODE_PRIVATE);
             fileOutputStream.write(message.getBytes());
             fileOutputStream.close();
         } catch (FileNotFoundException e) {

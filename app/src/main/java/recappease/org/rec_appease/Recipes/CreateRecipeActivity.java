@@ -100,7 +100,7 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
             }
         });
         */
-        add_ingredient.setOnClickListener(new View.OnClickListener() {
+        /**add_ingredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = food_name.getText().toString();
@@ -118,7 +118,7 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
                 adapter.notifyDataSetChanged();
                 adapter2.notifyDataSetChanged();
             }
-        });
+        });*/
 
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
