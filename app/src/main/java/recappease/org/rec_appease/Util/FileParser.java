@@ -130,7 +130,7 @@ public class FileParser {
         GroceryFragment.updateList();
         InventoryFragment.updateList();
     }
-
+/*
     public ArrayList<Recipe> readRecipeFile() {
         try {
             String message;
@@ -152,9 +152,9 @@ public class FileParser {
                     }
                 }
 
-                /**if (tokens.length == 10) {
+                if (tokens.length == 10) {
                     recipeList.add(new Recipe(tokens[0], null, ingredientList, Boolean.parseBoolean(tokens[3]), Integer.parseInt(tokens[4]), Integer.parseInt(tokens[5]), Integer.parseInt(tokens[6]), tokens[7], Integer.parseInt(tokens[8])));
-                }*/
+                }
                 //Log.d("Token", tokens[0] + " " + tokens[1] + " " + tokens[2]);
             }
             return recipeList;
@@ -195,7 +195,7 @@ public class FileParser {
             e.printStackTrace();
         }
     }
-
+*/
     public ArrayList<FoodItem> readIngredientsFile() {
         try {
             String message;
@@ -238,6 +238,18 @@ public class FileParser {
             e.printStackTrace();
         }
     }
+
+    /**public void clearContents() {
+        try {
+            FileOutputStream fileOutputStream = this.context.openFileOutput(ingredientsFileName, context.MODE_PRIVATE);
+            fileOutputStream.write(message.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     public String getGroceryFileName() {
         return groceryFileName;

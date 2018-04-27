@@ -35,14 +35,18 @@ public class ScanThread implements Runnable {
             name = name.substring(3, name.length() - 2);
             String creator = item.get("creator").toString();
             creator = creator.substring(3, creator.length() - 2);
+            String instructions = item.get("instructions").toString();
+            instructions = instructions.substring(3, instructions.length() - 2);
+            String ingredients = item.get("ingredients").toString();
+            ingredients = ingredients.substring(3, ingredients.length() - 2);
             Recipe recipe = new Recipe(name,
                     null,
-                    Recipe.parseIngredients(item.get("ingredients").toString()),
+                    Recipe.parseIngredients(ingredients),
                     Boolean.getBoolean(item.get("public").toString()),
                     Integer.parseInt(item.get("prep_time").toString().replaceAll("[^\\d.]", "")),
                     Integer.parseInt(item.get("serving_size").toString().replaceAll("[^\\d.]", "")),
                     Integer.parseInt(item.get("approx_cost").toString().replaceAll("[^\\d.]", "")),
-                    item.get("instructions").toString(),
+                    instructions,
                     Integer.parseInt(item.get("likes").toString().replaceAll("[^\\d.]", "")),
                     creator);
 

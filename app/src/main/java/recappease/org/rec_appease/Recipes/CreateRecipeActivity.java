@@ -131,12 +131,16 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
             public void onClick(View v) {
                 fileParser = new FileParser(getApplicationContext());
                 String titlestring = title.getText().toString();
+
+                String titleString = title.getText().toString();
+
 //                android.graphics.Matrix image = imageButton.getImageMatrix();
                 int time = Integer.parseInt(time_text.getText().toString());
                 int serving = Integer.parseInt(servings_text.getText().toString());
                 int cost = Integer.parseInt(cost_text.getText().toString());
                 boolean privacy = privacy_radio.isChecked();
                 String instructions = instruction_text.getText().toString();
+
                 ingredients = fileParser.readIngredientsFile();
                 recipe = new Recipe(titlestring, null, ingredients, privacy, time, serving, cost, instructions, 0, MainActivity.userId);
                 //FileParser fileParser = new FileParser(getApplicationContext());
@@ -145,6 +149,8 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
                 //recipeList.add(recipe);
 
                 //fileParser.writeRecipeFile(RecipesFragment.recipeList);
+                recipe = new Recipe(titleString, null, ingredients, privacy, time, serving, cost, instructions, 0, MainActivity.userId);
+
                 MainActivity.createRecipe(recipe);
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
