@@ -28,60 +28,19 @@
             android:foreground="@android:drawable/ic_menu_upload"
             app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
 
-        <ListView
-            android:id="@+id/ingredient_list"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/add_button"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:maxWidth="50dp"
-                android:src="@android:drawable/ic_input_add" />
 
-            <EditText
-                android:id="@+id/item_name"
+            <Button
+                android:id="@+id/ingredients_button"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:fontFamily="@font/lane"
-                android:hint="Add Item"
-                android:maxHeight="30dp"
-                android:maxLength="30"
-                android:maxLines="1"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/item_qty"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:fontFamily="@font/lane"
-                android:hint="Add Quantity"
-                android:inputType="number|numberDecimal"
-                android:maxLength="4"
-                android:maxLines="1"
-                android:textSize="12sp" />
-
-            <Spinner
-                android:id="@+id/item_unit"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:gravity="center" />
+                android:backgroundTint="@android:color/transparent"
+                android:text="Add Ingredients" />
 
         </LinearLayout>
 
@@ -174,6 +133,23 @@
 
             </RadioGroup>
         </LinearLayout>
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<Button-->
+                <!--android:id="@+id/ingredients_button"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:backgroundTint="@android:color/transparent"-->
+                <!--android:text="Add Ingredients" />-->
+            <!--&lt;!&ndash;app:srcCompat="@android:drawable/ic_input_add" &ndash;&gt;-->
+
+
+        <!--</LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"

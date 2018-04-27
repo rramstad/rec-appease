@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="recappease.org.rec_appease.Inventory.InventoryFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/add_button"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:width="30dp"
+                android:maxWidth="50dp"
+                android:src="@android:drawable/ic_input_add" />
+
+            <EditText
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:fontFamily="@font/lane"
+                android:hint="Add Item"
+                android:maxHeight="30dp"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/item_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:fontFamily="@font/lane"
+                android:hint="Add Quantity"
+                android:inputType="number|numberDecimal"
+                android:maxLength="4"
+                android:maxLines="1"
+                android:textSize="12sp" />
+
+            <Spinner
+                android:id="@+id/item_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Done" />
+
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/inventory_list"
+            android:layout_width="match_parent"
+            android:layout_height="375dp"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="top"
+            android:layout_marginBottom="25dp"
+            android:layout_weight="1" />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

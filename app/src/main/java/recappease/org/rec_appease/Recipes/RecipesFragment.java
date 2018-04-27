@@ -25,6 +25,7 @@ import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
 import recappease.org.rec_appease.R;
 import recappease.org.rec_appease.Util.FileParser;
 
+
 public class RecipesFragment extends Fragment {
     public static final int ACTIVITY_NUM = 4;
 
@@ -60,7 +61,6 @@ public class RecipesFragment extends Fragment {
 
         recipeList = ScanThread.getRecipes();
         recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
-
         list = view.findViewById(R.id.recipes_result);
         list.setAdapter(recipeAdapter);
         recipeAdapter.notifyDataSetChanged();
