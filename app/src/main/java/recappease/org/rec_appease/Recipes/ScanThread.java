@@ -8,6 +8,7 @@ import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 import recappease.org.rec_appease.models.nosql.RecipesDO;
@@ -20,9 +21,10 @@ public class ScanThread implements Runnable {
     private AmazonDynamoDBClient dynamoDBClient;
     private static ArrayList<Recipe> recipesArrayList;
 
+
     public ScanThread(AmazonDynamoDBClient dynamoDBClient) {
         this.dynamoDBClient = dynamoDBClient;
-        this.recipesArrayList = new ArrayList<Recipe>(30);
+        recipesArrayList = new ArrayList<Recipe>(30);
     }
 
     @Override
@@ -56,5 +58,16 @@ public class ScanThread implements Runnable {
 
     public static ArrayList<Recipe> getRecipes() {
         return recipesArrayList;
+    }
+
+    public static Recipe getRecipe(String recipeID) {
+        Iterator iterator = recipesArrayList.iterator();
+        while (iterator.hasNext()) {
+            Recipe rec = (Recipe) iterator.next();
+            if (recipeID.equals(rec.title+rec.creator)) {
+                return rec;
+            }
+        }
+        return null;
     }
 }

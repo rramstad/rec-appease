@@ -33,14 +33,15 @@ public class TodayFragment extends Fragment {
         FileParser fileParser = new FileParser(getContext());
         recipeList = fileParser.readRecipeFile();
            */
-        new Thread(new Runnable() {
+/*        new Thread(new Runnable() {
             @Override
             public void run() {
                 new ScanThread(MainActivity.dynamoDBClient).run();
                 // Item saved
             }
         }).start();
-
+       */
+/*
         recipeList = ScanThread.getRecipes();
         today_Adapter = new Today_Adapter(getActivity(), recipeList);
 
@@ -48,7 +49,7 @@ public class TodayFragment extends Fragment {
         list = view.findViewById(R.id.today_result);
         list.setAdapter(today_Adapter);
         today_Adapter.notifyDataSetChanged();
-
+*/
         return view;
 
     }

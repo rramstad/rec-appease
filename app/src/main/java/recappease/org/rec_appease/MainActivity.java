@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     // Declare a DynamoDBMapper object
-    private static DynamoDBMapper dynamoDBMapper;
+    public static DynamoDBMapper dynamoDBMapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
