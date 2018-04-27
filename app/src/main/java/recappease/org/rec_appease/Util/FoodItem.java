@@ -14,4 +14,8 @@ public class FoodItem {
         this.quantity = quantity;
         this.unit = unit;
     }
+
+    public String toString() {
+        return quantity + " " + unit + " " + name + "\n";
+    }
 }
