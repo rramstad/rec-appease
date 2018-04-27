@@ -33,6 +33,8 @@ import recappease.org.rec_appease.Util.FoodListAdapter;
  * Created by Ramstadr6 on 3/30/2018.
  */
 
+
+
 public class CreateRecipeActivity extends Activity implements View.OnClickListener{
 
     ListView list;
@@ -61,6 +63,8 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
 
     ImageView imageToUpload;
     private static final int RESULT_LOAD_IMAGE = 0;
+    private static FileParser fileParser;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +89,9 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
 
         imageToUpload = findViewById(R.id.imageButton);
 
-
         imageToUpload.setOnClickListener(this);
 
 
-        final ArrayList<FoodItem> ingredients = new ArrayList<>(30);
         //final FoodListAdapter adapter = new FoodListAdapter(this, ingredients, FoodListAdapter.fragmentID.CREATERECIPE, null);
         //list.setAdapter(adapter);
 //        final ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.units, android.R.layout.simple_spinner_dropdown_item);
@@ -123,8 +125,11 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
         });*/
 
         save_btn.setOnClickListener(new View.OnClickListener() {
+            ArrayList<FoodItem> ingredients = new ArrayList<>(30);
+
             @Override
             public void onClick(View v) {
+                fileParser = new FileParser(getApplicationContext());
                 String titleString = title.getText().toString();
 //                android.graphics.Matrix image = imageButton.getImageMatrix();
                 int time = Integer.parseInt(time_text.getText().toString());
@@ -132,6 +137,14 @@ public class CreateRecipeActivity extends Activity implements View.OnClickListen
                 int cost = Integer.parseInt(cost_text.getText().toString());
                 boolean privacy = privacy_radio.isChecked();
                 String instructions = instruction_text.getText().toString();
+                ingredients = fileParser.readIngredientsFile();
+                recipe = new Recipe(titlestring, null, ingredients, privacy, time, serving, cost, instructions, 0, MainActivity.userId);
+                //FileParser fileParser = new FileParser(getApplicationContext());
+                //RecipesFragment.recipeList.add(recipe);
+                //ArrayList<Recipe> recipeList = fileParser.readRecipeFile();
+                //recipeList.add(recipe);
+
+                //fileParser.writeRecipeFile(RecipesFragment.recipeList);
                 recipe = new Recipe(titleString, null, ingredients, privacy, time, serving, cost, instructions, 0, MainActivity.userId);
                 MainActivity.createRecipe(recipe);
 
