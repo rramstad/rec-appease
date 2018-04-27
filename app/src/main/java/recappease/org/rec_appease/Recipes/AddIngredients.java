@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import recappease.org.rec_appease.MainActivity;
 import recappease.org.rec_appease.R;
 import recappease.org.rec_appease.Util.FileParser;
 import recappease.org.rec_appease.Util.FoodItem;
@@ -45,10 +46,13 @@ public class AddIngredients extends Activity {
     private static ArrayList<FoodItem> inventoryItems;
     public static final int ACTIVITY_NUM = 1;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_add_ingredients);
+
+
 
         done = (Button) findViewById(R.id.done);
         text_box = (EditText) findViewById(R.id.item_name);
@@ -89,6 +93,8 @@ public class AddIngredients extends Activity {
                 text_box.setText("");
                 text_qty.setText("");
                 spn_unit.setSelection(0);
+
+
 
                 Toast.makeText(getApplicationContext(), (CharSequence) "Added To Grocery List.", Toast.LENGTH_SHORT);
                 // next thing you have to do is check if your adapter has changed

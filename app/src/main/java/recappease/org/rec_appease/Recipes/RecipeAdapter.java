@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -30,14 +31,15 @@ public class RecipeAdapter extends ArrayAdapter {
     private String recipeID;
 
 
+
     public RecipeAdapter(Activity context, ArrayList<Recipe> recipeList) {
         super(context, R.layout.layout_recipes, recipeList);
         this.context = context;
         this.recipeList = recipeList;
     }
 
-    public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
+    public View getView(final int position, View view, ViewGroup parent) {
+        final LayoutInflater inflater = context.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.recipe_profile, null,true);
 
         //this code gets references to objects in the listview_row.xml file
@@ -60,7 +62,8 @@ public class RecipeAdapter extends ArrayAdapter {
         //foodText.setText(foodList.get(position).quantity + " " + foodList.get(position).unit + " " + foodList.get(position).name);
 
         //foodunit.setSelection(spinnerAdapter.getPosition(foodList.get(position).unit));
-        Recipe rec = recipeList.get(position);
+
+        final Recipe rec = recipeList.get(position);
         recipeID = rec.title+rec.creator;
         titleText.setText(rec.title);
         serving_size.setText(rec.serving + " servings");
@@ -112,9 +115,21 @@ public class RecipeAdapter extends ArrayAdapter {
         });
 
         addInventory.setOnClickListener(new View.OnClickListener() {
+            FileParser f = new FileParser(getContext());
+
             @Override
             public void onClick(View v) {
-
+                ArrayList<FoodItem> finalList = new ArrayList<FoodItem>();
+                Recipe rec = recipeList.get(position);
+                ArrayList<FoodItem> initial = f.readGroceryFile();
+                //Iterator iterator = initial.iterator();
+                for (int i = 0; i < initial.size(); i++) {
+                    finalList.add(initial.get(i));
+                }
+                for (int i = 0; i < rec.ingredients.size(); i++) {
+                    finalList.add(rec.ingredients.get(i));
+                }
+                f.writeGroceryFile(finalList);
             }
 
         });
