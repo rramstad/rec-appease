@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="recappease.org.rec_appease.Recipes.RecipesFragment">
+
+
+    <ImageView
+        android:id="@+id/today_textBG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/me_textbg" />
+
+    <TextView
+        android:id="@+id/today_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="31dp"
+        android:maxLines="6"
+        android:minLines="0"
+        android:text="Title"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/today_ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/today_title"
+        android:layout_below="@+id/today_title"
+        android:layout_marginTop="25dp"
+        android:text="Ingredients"
+        android:maxLines="6"
+        android:minLines="0"
+        android:textSize="20dp"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/today_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/today_ingredients"
+        android:layout_below="@+id/today_ingredients"
+        android:layout_marginTop="25dp"
+        android:text="Instruction"
+        android:textSize="20dp"
+        android:layout_alignParentEnd="true"/>
+
+
+    <Button
+        android:id="@+id/today_cooked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/today_delete"
+        android:layout_alignBottom="@+id/today_delete"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="23dp"
+        android:clickable="true"
+        android:onClick="Confirm"
+        android:text="Cooked" />
+
+    <Button
+        android:id="@+id/today_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/today_textBG"
+        android:layout_alignStart="@+id/today_description"
+        android:layout_marginBottom="42dp"
+        android:clickable="true"
+        android:onClick="Cancel"
+        android:text="Delete" />
+
+
+
+
+
+
+</RelativeLayout>
