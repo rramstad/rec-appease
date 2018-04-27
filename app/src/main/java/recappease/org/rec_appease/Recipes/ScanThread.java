@@ -70,4 +70,6 @@ public class ScanThread implements Runnable {
         }
         return null;
     }
+
+    public static void emptyRecipes(){ recipesArrayList.clear(); }
 }
