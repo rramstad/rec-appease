@@ -26,6 +26,7 @@ public class FileParser {
     private String inventoryFileName = "inventory.txt";
     private String recipeFileName = "recipe.txt";
     private String ingredientsFileName = "ingredients.txt";
+    private String todayRecipes = "todayRecipes.txt";
     public Context context;
 
     public FileParser(Context context) {
@@ -237,6 +238,40 @@ public class FileParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void writeTodayRecipeFile (String recipeName){
+        try {
+            FileOutputStream fileOutputStream = this.context.openFileOutput(todayRecipes, context.MODE_PRIVATE);
+            fileOutputStream.write(recipeName.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String readTodayFile (){
+        String todaysRecipes = "";
+
+        try {
+            FileInputStream fileInputStream = this.context.openFileInput(todayRecipes);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            if((todaysRecipes=bufferedReader.readLine()) != null){
+                return todaysRecipes;
+            }
+
+            return "";
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return todaysRecipes;
     }
 
     public String getGroceryFileName() {

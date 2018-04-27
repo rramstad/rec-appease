@@ -9,6 +9,7 @@ import recappease.org.rec_appease.MainActivity;
 import recappease.org.rec_appease.R;
 import recappease.org.rec_appease.Recipes.Recipe;
 import recappease.org.rec_appease.Recipes.ScanThread;
+import recappease.org.rec_appease.Util.FileParser;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,11 @@ public class TodayFragment extends Fragment {
     ListView list;
     public static ArrayList<Recipe> recipeList;
     public Today_Adapter today_Adapter;
+    private static FileParser fileParser;
+
+    public static FileParser getFileParser(){
+        return fileParser;
+    }
 
     //private Session session;
     @Override
@@ -29,10 +35,8 @@ public class TodayFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
-        /*
-        FileParser fileParser = new FileParser(getContext());
-        recipeList = fileParser.readRecipeFile();
-           */
+        fileParser = new FileParser(this.getContext());
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -49,15 +53,17 @@ public class TodayFragment extends Fragment {
         list.setAdapter(today_Adapter);
         today_Adapter.notifyDataSetChanged();
 
+        ScanThread.emptyRecipes();
+
         return view;
 
     }
 
-    private void today() {
+    /*private void today() {
 
         //Recipe recipe = MainActivity.readRecipe();
         //signout.setText(recipe.title);
-    }
+    }*/
 
 
 }

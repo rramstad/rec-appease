@@ -27,6 +27,8 @@ import recappease.org.rec_appease.Util.FoodListAdapter;
 public class RecipeAdapter extends ArrayAdapter {
     public ArrayList<Recipe> recipeList;
     public Activity context;
+    private String recipeID;
+
 
     public RecipeAdapter(Activity context, ArrayList<Recipe> recipeList) {
         super(context, R.layout.layout_recipes, recipeList);
@@ -59,6 +61,7 @@ public class RecipeAdapter extends ArrayAdapter {
 
         //foodunit.setSelection(spinnerAdapter.getPosition(foodList.get(position).unit));
         Recipe rec = recipeList.get(position);
+        recipeID = rec.title+rec.creator;
         titleText.setText(rec.title);
         serving_size.setText(rec.serving + " servings");
         cost.setText("$" + rec.cost);
@@ -101,7 +104,9 @@ public class RecipeAdapter extends ArrayAdapter {
         addToday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String contents = RecipesFragment.getFileParser().readTodayFile();
+                contents += recipeID;
+                RecipesFragment.getFileParser().writeTodayRecipeFile(contents);
             }
 
         });
