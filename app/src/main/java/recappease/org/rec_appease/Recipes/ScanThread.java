@@ -57,4 +57,6 @@ public class ScanThread implements Runnable {
     public static ArrayList<Recipe> getRecipes() {
         return recipesArrayList;
     }
+
+    public static void emptyRecipes(){ recipesArrayList.clear(); }
 }
