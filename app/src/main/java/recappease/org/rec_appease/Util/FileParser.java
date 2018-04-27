@@ -239,6 +239,18 @@ public class FileParser {
         }
     }
 
+    /**public void clearContents() {
+        try {
+            FileOutputStream fileOutputStream = this.context.openFileOutput(ingredientsFileName, context.MODE_PRIVATE);
+            fileOutputStream.write(message.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+
     public String getGroceryFileName() {
         return groceryFileName;
     }
