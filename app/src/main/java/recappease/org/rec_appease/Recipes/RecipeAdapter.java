@@ -33,7 +33,7 @@ public class RecipeAdapter extends ArrayAdapter {
 
 
     public RecipeAdapter(Activity context, ArrayList<Recipe> recipeList) {
-        super(context, R.layout.layout_recipes, recipeList);
+        super(context, R.layout.recipe_profile, recipeList);
         this.context = context;
         this.recipeList = recipeList;
     }
@@ -135,5 +135,5 @@ public class RecipeAdapter extends ArrayAdapter {
         });
 
         return rowView;
-    };
+    }
 }

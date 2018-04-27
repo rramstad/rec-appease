@@ -35,15 +35,24 @@ public class TodayFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
-        fileParser = new FileParser(this.getContext());
+
+        
+        FileParser fileParser = new FileParser(getContext());
+        recipeList = fileParser.readRecipeFile();
+           
+        //new Thread(new Runnable() {
+
+        //fileParser = new FileParser(this.getContext());
 
         new Thread(new Runnable() {
+
             @Override
             public void run() {
                 new ScanThread(MainActivity.dynamoDBClient).run();
                 // Item saved
             }
         }).start();
+       */
 
         recipeList = ScanThread.getRecipes();
         today_Adapter = new Today_Adapter(getActivity(), recipeList);
@@ -54,7 +63,6 @@ public class TodayFragment extends Fragment {
         today_Adapter.notifyDataSetChanged();
 
         ScanThread.emptyRecipes();
-
         return view;
 
     }

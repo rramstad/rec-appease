@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import recappease.org.rec_appease.MainActivity;
 import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
@@ -33,7 +34,10 @@ public class RecipesFragment extends Fragment {
 
     ListView list;
     Button create_recipe;
+    Button browse_button;
+    Button favorite_button;
     public static ArrayList<Recipe> recipeList;
+    public static ArrayList<Recipe> tempList;
     public RecipeAdapter recipeAdapter;
     private static FileParser fileParser;
 
@@ -73,6 +77,51 @@ public class RecipesFragment extends Fragment {
         });
 
 
+        browse_button = view.findViewById(R.id.browse_button);
+        browse_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                /*
+                if (tempList.isEmpty()) {
+                    recipeAdapter.notifyDataSetChanged();
+                    return;
+                }
+                Iterator iterator = tempList.iterator();
+                while (iterator.hasNext()) {
+                    Recipe temp = (Recipe) iterator.next();
+                    recipeList.add(temp);
+                    tempList.remove(temp);
+                }
+                recipeAdapter.notifyDataSetChanged();
+                */
+            }
+
+        });
+
+        favorite_button = view.findViewById(R.id.favorite_button);
+        favorite_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                /*
+                // Search database for useraction on the recipe
+                // Move non-favorited recipes to tempList
+                tempList.clear();
+                UserActionHandler UAH = new UserActionHandler(MainActivity.dynamoDBClient);
+                UAH.loadUserActions(MainActivity.userId);
+                Iterator iterator = UAH.favList.iterator();
+                while(iterator.hasNext()) {
+                    UserAction ua = (UserAction) iterator.next();
+                    Recipe rec = ScanThread.getRecipe(ua.recipeId);
+                    if(rec != null) {
+
+                    }
+                }
+                */
+            }
+
+        });
 
         return view;
     }
