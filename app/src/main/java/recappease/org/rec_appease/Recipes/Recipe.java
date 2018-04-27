@@ -36,6 +36,7 @@ public class Recipe {
         this.creator = creator;
     }
 
+
     public static ArrayList<FoodItem> parseIngredients(String s) {
         ArrayList<FoodItem> ingredients = new ArrayList<FoodItem>(30);
         String ingredientToken[] = s.split(";;;");
@@ -57,6 +58,19 @@ public class Recipe {
             message = message + next.name + ":::" + Integer.toString(next.quantity) + ":::" + next.unit;
             if (iterator.hasNext()) {
                 message = message + ";;;";
+            }
+        }
+        return message;
+    }
+
+    public static String displayIngredients(ArrayList<FoodItem> ingredients){
+        String message = "";
+        Iterator<FoodItem> iterator = ingredients.iterator();
+        while (iterator.hasNext()) {
+            FoodItem next = iterator.next();
+            message = message + next.name + " - " + Integer.toString(next.quantity) + " " + next.unit;
+            if (iterator.hasNext()) {
+                message = message + "\n";
             }
         }
         return message;

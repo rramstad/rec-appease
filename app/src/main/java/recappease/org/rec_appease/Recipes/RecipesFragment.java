@@ -51,34 +51,6 @@ public class RecipesFragment extends Fragment  {
         recipeList = ScanThread.getRecipes();
         recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
 
-        /*
-        TabLayout tabs = (TabLayout) view.findViewById(R.id.tablayout);
-        tabs.addTab(tabs.newTab().setText("Browse"));
-        tabs.addTab(tabs.newTab().setText("Saved"));
-        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        final ViewPager viewPager = (ViewPager)view.findViewById(R.id.pager2);
-        final PagerAdapter adapter = new PagerAdapter(getFragmentManager(), tabs.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
-
-        tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        */
 
         list = view.findViewById(R.id.recipes_result);
         list.setAdapter(recipeAdapter);
