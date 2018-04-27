@@ -152,9 +152,9 @@ public class FileParser {
                     }
                 }
 
-                if (tokens.length == 10) {
+                /**if (tokens.length == 10) {
                     recipeList.add(new Recipe(tokens[0], null, ingredientList, Boolean.parseBoolean(tokens[3]), Integer.parseInt(tokens[4]), Integer.parseInt(tokens[5]), Integer.parseInt(tokens[6]), tokens[7], Integer.parseInt(tokens[8])));
-                }
+                }*/
                 //Log.d("Token", tokens[0] + " " + tokens[1] + " " + tokens[2]);
             }
             return recipeList;
