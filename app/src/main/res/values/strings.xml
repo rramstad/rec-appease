@@ -25,6 +25,9 @@
     <string name="MealPlan">Meal Plan</string>
     <string name="Recipes">Recipes</string>
 
+    <string name="Browse">Browse</string>
+    <string name="Favorites">Favorites</string>
+
     <string-array name="units">
         <item>-none-</item>
         <item>tsp</item>
@@ -33,9 +36,6 @@
         <item>cups</item>
         <item>liters</item>
         <item>gallons</item>
-        <item>lbs</item>
-        <item>ounce</item>
-        <item>grams</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

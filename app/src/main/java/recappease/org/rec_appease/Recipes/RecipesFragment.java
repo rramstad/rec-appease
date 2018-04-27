@@ -25,7 +25,7 @@ import recappease.org.rec_appease.Util.BottomNavigationViewHelper;
 import recappease.org.rec_appease.R;
 import recappease.org.rec_appease.Util.FileParser;
 
-public class RecipesFragment extends Fragment implements BrowseRecipes.OnFragmentInteractionListener, SavedRecipes.OnFragmentInteractionListener {
+public class RecipesFragment extends Fragment {
     public static final int ACTIVITY_NUM = 4;
 
     ListView list;
@@ -36,6 +36,16 @@ public class RecipesFragment extends Fragment implements BrowseRecipes.OnFragmen
     //@Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipes, container, false);
+        /*
+        FileParser fileParser = new FileParser(getContext());
+        recipeList = fileParser.readRecipeFile();
+           */
+/*
+        TabLayout tabs = (TabLayout) view.findViewById(R.id.tablayout);
+        tabs.addTab(tabs.newTab().setText("Browse"));
+        tabs.addTab(tabs.newTab().setText("Saved"));
+        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
+*/
         /*
         FileParser fileParser = new FileParser(getContext());
         recipeList = fileParser.readRecipeFile();
@@ -51,38 +61,15 @@ public class RecipesFragment extends Fragment implements BrowseRecipes.OnFragmen
         recipeList = ScanThread.getRecipes();
         recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
 
-        /*
-        TabLayout tabs = (TabLayout) view.findViewById(R.id.tablayout);
-        tabs.addTab(tabs.newTab().setText("Browse"));
-        tabs.addTab(tabs.newTab().setText("Saved"));
-        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        final ViewPager viewPager = (ViewPager)view.findViewById(R.id.pager2);
-        final PagerAdapter adapter = new PagerAdapter(getFragmentManager(), tabs.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
-
-        tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        */
-
         list = view.findViewById(R.id.recipes_result);
         list.setAdapter(recipeAdapter);
         recipeAdapter.notifyDataSetChanged();
+
+        /*
+        list = view.findViewById(R.id.recipes_result);
+        list.setAdapter(recipeAdapter);
+        recipeAdapter.notifyDataSetChanged();
+           */
         create_recipe = view.findViewById(R.id.create_recipe_btn);
         create_recipe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,8 +83,4 @@ public class RecipesFragment extends Fragment implements BrowseRecipes.OnFragmen
         return view;
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }

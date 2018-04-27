@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import recappease.org.rec_appease.R;
 import recappease.org.rec_appease.Util.FileParser;
@@ -44,6 +45,9 @@ public class RecipeAdapter extends ArrayAdapter {
         TextView serving_size = (TextView)rowView.findViewById(R.id.serving_size);
         TextView cost = (TextView)rowView.findViewById(R.id.cost);
         TextView time = (TextView)rowView.findViewById(R.id.recipe_time);
+        TextView ingredient = (TextView)rowView.findViewById(R.id.ingredients);
+        TextView instructions = (TextView)rowView.findViewById(R.id.instructions);
+        TextView likes = (TextView)rowView.findViewById(R.id.likes);
 
         ImageButton upvote = (ImageButton)rowView.findViewById(R.id.upvote);
         ImageButton downvote = (ImageButton)rowView.findViewById(R.id.downvote);
@@ -59,6 +63,16 @@ public class RecipeAdapter extends ArrayAdapter {
         serving_size.setText(rec.serving + " servings");
         cost.setText("$" + rec.cost);
         time.setText(rec.time + " minutes");
+        likes.setText(rec.likes + " Likes");
+
+        Iterator iterator = rec.ingredients.iterator();
+        String m = "";
+        while (iterator.hasNext()) {
+            FoodItem next = (FoodItem) iterator.next();
+            m = m + next.toString();
+        }
+        ingredient.setText(m);
+        instructions.setText(rec.instructions);
 
         upvote.setOnClickListener(new View.OnClickListener() {
             @Override

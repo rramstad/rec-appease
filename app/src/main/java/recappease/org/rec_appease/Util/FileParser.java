@@ -129,7 +129,7 @@ public class FileParser {
         GroceryFragment.updateList();
         InventoryFragment.updateList();
     }
-
+/*
     public ArrayList<Recipe> readRecipeFile() {
         try {
             String message;
@@ -194,7 +194,7 @@ public class FileParser {
             e.printStackTrace();
         }
     }
-
+*/
     public String getGroceryFileName() {
         return groceryFileName;
     }

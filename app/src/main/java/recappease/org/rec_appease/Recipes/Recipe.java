@@ -42,9 +42,7 @@ public class Recipe {
         String token[];
         for (int i = 0; i < ingredientToken.length; i++) {
             token = ingredientToken[i].split(":::");
-            for (int j = 0; j < token.length; j++) {
-                ingredients.add(new FoodItem(token[0], Integer.parseInt(token[1]), token[2]));
-            }
+            ingredients.add(new FoodItem(token[0], Integer.parseInt(token[1]), token[2]));
         }
         return ingredients;
     }

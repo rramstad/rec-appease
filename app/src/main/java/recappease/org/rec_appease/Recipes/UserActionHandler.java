@@ -16,7 +16,7 @@ public class UserActionHandler {
     }
 
     public static void loadLikeAndFavorite() {
-        
+
     }
 
     public boolean isFavorited() {
